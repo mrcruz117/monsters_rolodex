@@ -21,9 +21,16 @@ class App extends Component {
       );
   }
 
+  handleSearchChange = (e) => {
+    this.setState({ searchField: e.target.value.toLowerCase() });
+  };
+
   render() {
-    const filteredMonsters = this.state.monsters.filter((monster) =>
-      monster.name.toLowerCase().includes(this.state.searchField)
+    const { monsters, searchField } = this.state;
+    const { handleSearchChange } = this;
+
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchField)
     );
     return (
       <div className="App">
@@ -31,9 +38,7 @@ class App extends Component {
           className="search-box"
           type={"search"}
           placeholder={"search monsters"}
-          onChange={(e) => {
-            this.setState({ searchField: e.target.value.toLowerCase() });
-          }}
+          onChange={handleSearchChange}
         />
         {filteredMonsters.map((monster) => {
           return <h1 key={monster.id}>{monster.name}</h1>;
