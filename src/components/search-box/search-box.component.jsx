@@ -2,14 +2,14 @@ import { Component } from "react";
 
 class SearchBox extends Component {
   render() {
-    const { placeholder, handleChange } = this.props;
+    const { placeholder, handleSearchChange, className } = this.props;
 
     return (
       <input
-        className="search"
+        className={className}
         type="search"
         placeholder={placeholder}
-        onChange={handleChange}
+        onChange={handleSearchChange}
       />
     );
   }
