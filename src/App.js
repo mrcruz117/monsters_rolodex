@@ -47,6 +47,7 @@ class App_OLD_class extends Component {
 
 const App = () => {
   const [monsters, setMonsters] = useState([]);
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
   const [searchField, setSearchField] = useState("");
 
   useEffect(() => {
@@ -54,6 +55,13 @@ const App = () => {
       .then((response) => response.json())
       .then((users) => setMonsters(users));
   }, []);
+  useEffect(() => {
+    setFilteredMonsters(
+      monsters.filter((monster) =>
+        monster.name.toLowerCase().includes(searchField)
+      )
+    );
+  }, [monsters, searchField]);
 
   const handleSearchChange = (e) => {
     setSearchField(e.target.value.toLowerCase());
@@ -66,7 +74,7 @@ const App = () => {
         handleSearchChange={handleSearchChange}
         placeholder="Search Monsters"
       />
-      <CardList searchField={searchField} monsters={monsters} />
+      <CardList searchField={searchField} monsters={filteredMonsters} />
     </div>
   );
 };
