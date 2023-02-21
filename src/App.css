@@ -18,3 +18,10 @@ body {
 
  /* search-box.styles.css */
 
+.app-title {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 50px;
+  color: #0ccac4;
+  text-shadow: 2px 2px 4px #000000;
+}
