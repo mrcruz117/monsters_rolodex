@@ -19,7 +19,9 @@ const App = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const users = await getData<Monster[]>("users");
+      const users = await getData<Monster[]>(
+        "https://jsonplaceholder.typicode.com/users"
+      );
       setMonsters(users);
     };
     fetchUsers();
@@ -43,7 +45,7 @@ const App = () => {
         handleSearchChange={handleSearchChange}
         placeholder="Search Monsters"
       />
-      <CardList searchField={searchField} monsters={filteredMonsters} />
+      <CardList monsters={filteredMonsters} />
     </div>
   );
 };
